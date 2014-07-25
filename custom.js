@@ -116,7 +116,7 @@
         var indexForStringSearchValue;
         var result;
         var flag = 1;
-        debugger;
+        //debugger;
         if (stringSearchValue == undefined || stringSearchValue == null || stringSearchValue == '') {
             return console.log("Enter string to find IndexOf");
         }
@@ -129,7 +129,7 @@
                         if (this.val[indexForStringSearchValue] == stringSearchValue[j]) {
                             indexForStringSearchValue++;
                             flag = 1;
-                            debugger;
+                           // debugger;
                         }
                         else {
                             flag = 0;
@@ -137,7 +137,7 @@
                         }
                     }
                     if (flag == 1) {
-                        debugger;
+                        //debugger;
                         return result;
                     }
 
@@ -172,15 +172,16 @@
 
 
     this.StringReplace = function (stringSearch, stringReplace) {
-        var index = this.value.indexOf(stringSearch);
+        //debugger;
+        var index = this.val.indexOf(stringSearch);
         var stringReplaced = "";
         var newString = stringReplace;
-        var indexLast = index + stringSearch.this.StringLength();
+        var indexLast = index + stringSearch.length;;
         for (var i = 0; i < index; i++)
-            stringReplaced += this.value[i];
+            stringReplaced += this.val[i];
         stringReplaced += stringReplace;
         for (var j = indexLast; j < this.StringLength() ; j++)
-            stringReplaced += this.value[j];
+            stringReplaced += this.val[j];
         return stringReplaced;
     }
 
