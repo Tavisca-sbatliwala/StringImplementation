@@ -110,12 +110,12 @@
 
 
     this.StringIndexOf = function (stringSearchValue, strStart) {
-
+        debugger;
         var lengthStrOne = this.StringLength();
-        var lengthStringSearchValue = stringSearchValue.StringLength();
-        var indexForStringSearchValue;
+        var indexForStringSearchValue = 0;
         var result;
         var flag = 1;
+        var track;
         //debugger;
         if (stringSearchValue == undefined || stringSearchValue == null || stringSearchValue == '') {
             return console.log("Enter string to find IndexOf");
@@ -124,12 +124,12 @@
             for (var i = 0; i < lengthStrOne; i++) {
                 if (stringSearchValue[indexForStringSearchValue] == this.val[i]) {
                     result = i;
-                    indexForStringSearchValue = i;
+                    track = i;
                     for (var j = 0; stringSearchValue[j] != undefined; j++) {
-                        if (this.val[indexForStringSearchValue] == stringSearchValue[j]) {
-                            indexForStringSearchValue++;
+                        if (this.val[track] == stringSearchValue.val[j]) {
+                            track++;
                             flag = 1;
-                           // debugger;
+                            //debugger;
                         }
                         else {
                             flag = 0;
@@ -149,10 +149,10 @@
             for (var i = strStart; this.val[i] != undefined; i++, j++) {
                 if (stringSearchValue[indexForStringSearchValue] == this.val[i]) {
                     result = j;
-                    indexForStringSearchValue = j;
+                    track = j;
                     for (var k = 0; stringSearchValue[k] != undefined; k++) {
-                        if (this.val[indexForStringSearchValue] == stringSearchValue[k]) {
-                            indexForStringSearchValue++;
+                        if (this.val[track] == stringSearchValue.val[k]) {
+                            track++;
                             flag = 1;
                         }
                         else {
