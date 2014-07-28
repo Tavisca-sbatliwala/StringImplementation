@@ -1,4 +1,5 @@
-﻿function string_Expression(strOne) {
+﻿
+function string_Expression(strOne) {
 
     this.val = strOne;
     this.StringConcat = function (strTwo) {
@@ -187,9 +188,6 @@
 
 }
 
-
-
-
 function calculate() {
     var e = document.getElementById("dropMenu");
     var strUser = e.options[e.selectedIndex].text;
@@ -204,43 +202,48 @@ function calculate() {
     switch (strUser) {
         case "Concat":
             var result = s.StringConcat(strTwo);
-            resultBox.value = result;
+            resultBox.innerHTML = result;
             break;
         case "Length":
             var result = s.StringLength();
-            resultBox.value = result;
+            resultBox.innerHTML = result;
             break;
 
         case "Substring":
             var result = s.StringSubString(startIndex, endIndex);
-            resultBox.value = result;
+            resultBox.innerHTML = result;
             break;
 
         case "Indexof":
             var result = s.StringIndexOfChar(stringToSearch, startIndex);
-            resultBox.value = result;
+            resultBox.innerHTML= result;
             break;
 
         case "CharAt":
             var result = s.StringCharAt(startIndex);
-            resultBox.value = result;
+            resultBox.innerHTML= result;
             break;
 
         case "Lastindexof":
             var result = s.StringIndexOfChar(stringToSearch, startIndex);
-            resultBox.value = result;
+            resultBox.innerHTML = result;
             break;
 
         case "Reverse":
             var result = s.StringReverse();
-            resultBox.value = result;
+            resultBox.innerHTML = result;
             break;
 
         case "Replace":
             var result = s.StringReplace(strTwo, stringReplace);
-            resultBox.value = result;
+            resultBox.innerHTML= result;
 
     }
 
 }
 
+//var register =function(){
+    var id=document.getElementById("calculateMethods");
+id.onclick=calculate;//('click',calculate,false);
+
+//}
