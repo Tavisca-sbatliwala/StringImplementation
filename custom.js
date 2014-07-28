@@ -44,7 +44,14 @@ function string_Expression(strOne) {
         if (index == undefined || index == null || index == '') {
             return console.log("Enter Index for which you want to find Character");
         }
-        return this.val[index];
+         if(index>this.StringLength()){
+            return "";
+         }
+         else
+             {
+                return this.val[index];
+             }
+        
     }
 
 
@@ -82,95 +89,61 @@ function string_Expression(strOne) {
     }
 
 
-    this.StringLastIndexOfChar = function (stringSearchValue, strStart) {
-        if (stringSearchValue == undefined || stringSearchValue == null || stringSearchValue == '') {
-            return console.log("Enter string to find LastIndexOf");
-        }
-        else if (strStart == undefined || strStart == null || strStart == '') {
-            for (var i = 0; this.val[i] != undefined; i++) {
-                if (stringSearchValue == this.val[i]) {
-                    var index = i;
-                }
-            }
-            return index;
-        }
-        else {
-            var j = 0;
-            for (var i = strStart; this.val[i] != undefined; i++, j++) {
-                if (stringSearchValue == this.val[i]) {
-                    //debugger;
-                    var index = j;
-
-                }
-
-            }
-            return index;
-        }
-    }
-
-
-
-    this.StringIndexOf = function (stringSearchValue, strStart) {
-        debugger;
-        var lengthStrOne = this.StringLength();
-        var indexForStringSearchValue = 0;
-        var result;
-        var flag = 1;
-        var track;
-        //debugger;
-        if (stringSearchValue == undefined || stringSearchValue == null || stringSearchValue == '') {
+    this.StringIndexOf=function(stringSearch){
+        var index2, index1;
+        var len=stringSearch.length;
+        var originalStringLength=this.StringLength();
+        if (stringSearch == undefined || stringSearch == null || stringSearch == '') {
             return console.log("Enter string to find IndexOf");
         }
-        else if (strStart == undefined || strStart == null || strStart == '') {
-            for (var i = 0; i < lengthStrOne; i++) {
-                if (stringSearchValue[indexForStringSearchValue] == this.val[i]) {
-                    result = i;
-                    track = i;
-                    for (var j = 0; stringSearchValue[j] != undefined; j++) {
-                        if (this.val[track] == stringSearchValue.val[j]) {
-                            track++;
-                            flag = 1;
-                            //debugger;
-                        }
-                        else {
-                            flag = 0;
-                            break;
-                        }
-                    }
-                    if (flag == 1) {
-                        //debugger;
-                        return result;
-                    }
+        else{
+            for (var i = 0; i < originalStringLength; i++) {
+            index2 = 0;
+            index1 = i;
+            while (index2 < len && index1< originalStringLength && this.val[index1] == stringSearch[index2]) {
+                index1++;
+                index2++;
+            };
 
-                }
-            }
-        }
-        else {
-            var j = 0;
-            for (var i = strStart; this.val[i] != undefined; i++, j++) {
-                if (stringSearchValue[indexForStringSearchValue] == this.val[i]) {
-                    result = j;
-                    track = j;
-                    for (var k = 0; stringSearchValue[k] != undefined; k++) {
-                        if (this.val[track] == stringSearchValue.val[k]) {
-                            track++;
-                            flag = 1;
-                        }
-                        else {
-                            flag = 0;
-                            break;
-                        }
-                    }
-                    if (flag == 1) {
-                        return result;
-                    }
-
-                }
-            }
+            if (index2 == len) 
+                {
+                    break;
+                };
+            };
+              
+              if(i==originalStringLength){
+                return -1
+              }
+              else
+              {
+                return i;
+              }
+        
         }
 
     }
+  
 
+  this.StringLastIndexOf = function (stringSearch) {
+        var index2, index1;
+         var len=stringSearch.length;
+         var originalStringLength=this.StringLength();
+        for (var i = originalStringLength - 1; i >=0; i--) { 
+            index2 = 0;
+            index1 = i;
+            while (index2 < len && index1 < originalStringLength && this.val[index1] == stringSearch[index2]) {
+                index1++;
+                index2++;
+            };
+
+            if (index2 == len) 
+                {
+                    break;
+                };
+        }
+
+        return i;
+    }
 
     this.StringReplace = function (stringSearch, stringReplace) {
         //debugger;
@@ -187,6 +160,7 @@ function string_Expression(strOne) {
     }
 
 }
+
 
 function calculate() {
     var e = document.getElementById("dropMenu");
@@ -214,8 +188,8 @@ function calculate() {
             resultBox.innerHTML = result;
             break;
 
-        case "Indexof":
-            var result = s.StringIndexOfChar(stringToSearch, startIndex);
+        case "IndexofChar":
+            var result = s.StringIndexOfChar(stringToSearch,startindex);
             resultBox.innerHTML= result;
             break;
 
@@ -223,12 +197,6 @@ function calculate() {
             var result = s.StringCharAt(startIndex);
             resultBox.innerHTML= result;
             break;
-
-        case "Lastindexof":
-            var result = s.StringIndexOfChar(stringToSearch, startIndex);
-            resultBox.innerHTML = result;
-            break;
-
         case "Reverse":
             var result = s.StringReverse();
             resultBox.innerHTML = result;
@@ -238,12 +206,19 @@ function calculate() {
             var result = s.StringReplace(strTwo, stringReplace);
             resultBox.innerHTML= result;
 
+        case "Indexof":
+             var result=s.StringIndexOf(stringToSearch);
+             resultBox.innerHTML= result;
+            break;
+
+        case "Lastindexof":
+             var result=s.StringLastIndexOf(stringToSearch);
+             resultBox.innerHTML= result;
+            break;
+
     }
 
 }
 
-//var register =function(){
-    var id=document.getElementById("calculateMethods");
-id.onclick=calculate;//('click',calculate,false);
-
-//}
+var id=document.getElementById("calculateMethods");
+id.onclick=calculate;
